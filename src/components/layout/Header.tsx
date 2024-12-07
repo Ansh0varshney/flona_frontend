@@ -1,15 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { HeartHandshake } from "lucide-react";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollOpacity, setScrollOpacity] = useState(0);
 
   // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 20);
+      setScrollOpacity(Math.min(scrollPosition / 300, 1)); // Adjust opacity as you scroll down
     };
 
     // Check user's motion preferences
@@ -24,17 +25,16 @@ export function Header() {
   return (
     <motion.header
       className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b" : "bg-transparent"
+        isScrolled ? "backdrop-blur-md border-b" : ""
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
+      style={{
+        backgroundColor: `rgba(252, 229, 231, ${0.8 - scrollOpacity * 0.5})`, // Dynamic opacity blending
+      }}
     >
-      <nav 
-        className="container mx-auto px-4 h-16 flex items-center justify-between"
-        role="navigation"
-        aria-label="Main navigation"
-      >
+      <nav className="container mx-auto px-4 h-16 flex items-center justify-between" role="navigation" aria-label="Main navigation">
         <motion.a
           href="/"
           className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
@@ -42,7 +42,6 @@ export function Header() {
           whileTap={{ scale: 0.95 }}
           aria-label="Flora home"
         >
-          <HeartHandshake className="h-8 w-8 text-primary" aria-hidden="true" />
           <span className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-teal-600">
             Flora
           </span>
@@ -53,8 +52,8 @@ export function Header() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="lg"
             className="shadow-sm hover:shadow-md transition-shadow"
             aria-label="Login with Google account"

@@ -6,7 +6,7 @@ export function Hero() {
     <section 
       className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
       role="banner"
-      aria-label="Welcome to Flora"
+      aria-label="Welcome to Flona"
     >
       {/* Background Image with Gradient Overlay */}
       <div 
@@ -15,13 +15,13 @@ export function Hero() {
           backgroundImage: `
             linear-gradient(
               to bottom,
-              rgba(255, 236, 230, 0.9),
-              rgba(183, 223, 227, 0.7)
+              rgba(255, 236, 230, 0),
+              rgba(183, 223, 227, 0)
             ),
-            url('https://images.unsplash.com/photo-1617791160505-6f00504e3519?auto=format&fit=crop&q=80&w=1000')
+            url('https://images.unsplash.com/photo-1557672186-269926e526c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
           `,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+            backgroundSize: '80%',  // Make the image smaller (adjust percentage to your liking)
+            backgroundPosition: 'center 10%',
         }}
       >
         {/* Fallback background for older browsers */}
