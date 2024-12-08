@@ -52,14 +52,13 @@ export function Header() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <Button
-            variant="outline"
-            size="lg"
-            className="shadow-sm hover:shadow-md transition-shadow"
-            aria-label="Login with Google account"
+          {/* Simple Button Component */}
+          <button
+            className="px-4 py-2 border-2 border-gray-500 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors"
+            aria-label="Login with Google"
           >
             Login with Google
-          </Button>
+          </button>
         </motion.div>
       </nav>
     </motion.header>
